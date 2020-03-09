@@ -88,6 +88,11 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>LATEST</version>
+			</plugin>
+			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
@@ -139,10 +144,10 @@
 				</dependencies>
 				<configuration>
 					<targetClasses>
-						<param>com.ipiecoles.java.java350.service*</param>
+						<param>com.ipiecoles.java.java350.*</param>
 					</targetClasses>
 					<targetTests>
-						<param>com.ipiecoles.java.java350.service*</param>
+						<param>com.ipiecoles.java.java350.*</param>
 					</targetTests>
 				</configuration>
 			</plugin>
