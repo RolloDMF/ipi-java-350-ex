@@ -110,8 +110,7 @@ public class Employe {
     //Augmenter salaire
     public void augmenterSalaire(double pourcentage){
         if (pourcentage > 0) {
-            Double salaire = this.getSalaire();
-            Double salaireFinale = salaire * (1 + (pourcentage/100));
+            Double salaireFinale = this.getSalaire() * (1 + (pourcentage/100));
             this.setSalaire(salaireFinale);
         }
         return;
