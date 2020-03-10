@@ -55,4 +55,25 @@ public class EmployeTest {
         //Then
         Assertions.assertThat(vraiPrime).isEqualTo(prime);
     }
+
+    @ParameterizedTest()
+    //salaire, pourcentage d augmentation, resultat
+    @CsvSource({
+        "1500.00, 100.00, 3000.00",
+        "1500.00, -100.00, 1500", //imposible de diminuer le salaire
+        "1500.00, 0.00, 1500.00",
+        "1500.00, 50.00, 2250.00",
+    })
+    public void testAugmenterSalaire(Double salaire, Double pourcentageAugmentation, Double salaireAugmente) {
+        // Given
+        final Employe employe = new Employe();
+        employe.setSalaire(salaire);
+
+        // When
+        employe.augmenterSalaire(pourcentageAugmentation);
+
+        //Then
+        Double salaireFinale = employe.getSalaire();
+        Assertions.assertThat(salaireFinale).isEqualTo(salaireAugmente);
+    }   
 }
