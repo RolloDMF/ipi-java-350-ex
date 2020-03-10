@@ -46,6 +46,33 @@ public class EmployeServiceTest {
         ArgumentCaptor<Employe> employeCaptor = ArgumentCaptor.forClass(Employe.class);
         Mockito.verify(repo, Mockito.times(1)).save(employeCaptor.capture());
         Assertions.assertThat(employeCaptor.getValue().getMatricule()).isEqualTo("C00346");
+    }
 
+    @Test
+    public void testCalculPerformenceCommercial() throws EmployeException {
+      //test du cas 5 + supperieur a la moyenne des autre commeciaux
+      //Given
+        String matricule = "C00001";
+        Integer performance = 1;
+        Long caTraite = 130l; 
+        Long objectifCa = 100l; //Utilisation de 100 pour facilité le calcule
+        Double perfMoyenne = 2.00;
+
+        // Creation d un employé test
+        Employe employe = new Employe();
+        employe.setMatricule(matricule);
+        employe.setPerformance(performance);
+
+        Mockito.when(repo.findByMatricule(matricule)).thenReturn(employe);
+        Mockito.when(repo.avgPerformanceWhereMatriculeStartsWith("C")).thenReturn(perfMoyenne);
+
+      //When
+        employeService.calculPerformanceCommercial(matricule, caTraite, objectifCa);
+
+      //Then
+        //en bdd verifier si l employé est bien créé
+        ArgumentCaptor<Employe> employeCaptor = ArgumentCaptor.forClass(Employe.class);
+        Mockito.verify(repo, Mockito.times(1)).save(employeCaptor.capture());
+        Assertions.assertThat(employeCaptor.getValue().getPerformance()).isEqualTo(6);
     }
 }
