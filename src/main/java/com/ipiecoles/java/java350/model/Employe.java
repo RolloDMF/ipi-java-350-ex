@@ -113,7 +113,6 @@ public class Employe {
             Double salaireFinale = this.getSalaire() * (1 + (pourcentage/100));
             this.setSalaire(salaireFinale);
         }
-        return;
     }
 
     public Long getId() {
