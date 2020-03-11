@@ -28,9 +28,9 @@ public class EmployeService {
      * @param tempsPartiel Le pourcentage d'activité en cas de temps partiel
      *
      * @throws EmployeException Si on arrive au bout des matricules possibles
-     * @throws RuntimeException Si le matricule correspond à un employé existant
+     * @throws EntityExistsException Si le matricule correspond à un employé existant
      */
-    public void embaucheEmploye(String nom, String prenom, Poste poste, NiveauEtude niveauEtude, Double tempsPartiel) throws EmployeException, RuntimeException {
+    public void embaucheEmploye(String nom, String prenom, Poste poste, NiveauEtude niveauEtude, Double tempsPartiel) throws EmployeException, EntityExistsException {
 
         //Récupération du type d'employé à partir du poste
         String typeEmploye = poste.name().substring(0,1);
